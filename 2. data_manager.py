@@ -20,8 +20,11 @@ COLUMNS_TRAINING_DATA_V1 = [
     'close_ma120_ratio', 'volume_ma120_ratio'
 ]
 
+# data['open'][1:].values - data['close'][:-1].values)
+
 
 def preprocess(data):
+    #close_ma, volume_ma
     windows = [5, 10, 20, 60, 120]
     for window in windows:
         data['close_ma{}'.format(window)] = data['close'].rolling(
@@ -33,7 +36,7 @@ def preprocess(data):
         data['volume_ma%d_ratio' % window] = (
             data['volume'] - data['volume_ma%d' % window]) / data['volume_ma%d' % window]
 
-    # 문의
+    # open_lastclose_ratio
     data['open_lastclose_ratio'] = np.zeros(len(data))
     data.loc[1:, 'open_lastclose_ratio'] = (
         data['open'][1:].values - data['close'][:-1].values) / data['close'][:-1].values
