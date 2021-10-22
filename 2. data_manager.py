@@ -23,7 +23,7 @@ COLUMNS_TRAINING_DATA_V1 = [
 # data['open'][1:].values - data['close'][:-1].values)
 
 
-def preprocess(data):
+def preprocess(data, ver='v1'):
     #close_ma, volume_ma
     windows = [5, 10, 20, 60, 120]
     for window in windows:
@@ -82,3 +82,7 @@ def load_data(date_from, date_to):
     training_data = data[COLUMNS_TRAINING_DATA_V1]
 
     return chart_data, training_data
+
+
+# 실행함수
+a, b =
